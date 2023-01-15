@@ -7,8 +7,10 @@ package frc.robot;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.wpi.first.math.trajectory.constraint.MecanumDriveKinematicsConstraint;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -20,6 +22,7 @@ import frc.robot.commands.auto.AutoShootCollectRightShoot;
 import frc.robot.commands.auto.DriveBackwardsAuto;
 import frc.robot.commands.auto.HalfBall;
 import frc.robot.commands.auto.RamShoot;
+import frc.robot.commands.auto.Roboticon;
 import frc.robot.commands.auto.SpinShoot;
 import frc.robot.commands.auto.SpinShootBombSquad;
 import frc.robot.commands.auto.TwoBallAuto;
@@ -43,6 +46,7 @@ import frc.robot.commands.climb.ResetWinchEncoders;
 import frc.robot.commands.climb.RotatingArmRaiseFullOpenGrip;
 import frc.robot.commands.climb.CopilotJoysticksControlWinches;
 import frc.robot.commands.demo.MoveOctagon;
+import frc.robot.commands.drive.Energize;
 import frc.robot.commands.drive.Stop;
 import frc.robot.commands.drive.TeleopDrive;
 import frc.robot.commands.drive.ToggleDirection;
@@ -117,6 +121,7 @@ public class RobotContainer {
     autoCommands.put("2 Ball v1", new TwoBallAuto_OneAtATime(driveSubsystem, cargoSubsystem));
     autoCommands.put("2 Ball v2", new TwoBallAuto_TwiceSameTime(driveSubsystem, cargoSubsystem));
     autoCommands.put("2 ball v3", new TwoBallAuto_TwiceSameTimeV3(driveSubsystem, cargoSubsystem));
+    autoCommands.put("roboticon", new Roboticon(driveSubsystem, cargoSubsystem));
     //
     //
     // ------------------------------------------------------------------------
@@ -221,9 +226,11 @@ public class RobotContainer {
     POVButton pilotDpadUp = new POVButton(pilot, 0);
     POVButton pilotDpadDown = new POVButton(pilot, 180);
     POVButton pilotDpadRight = new POVButton(pilot, 90);
+    POVButton pilotStartButton = new POVButton(pilot, 0);
 
     // POVButton copilotDpadLeft = new POVButton(copilot, 270);
 
+    pilotStartButton.whenHeld(new Energize(driveSubsystem), true);
     pilotDpadUp.whenPressed(new Shoot(cargoSubsystem), true);
     pilotDpadDown.whenPressed(new Collect(cargoSubsystem), true);
     pilotDpadRight.whenPressed(new Stow(cargoSubsystem), true);
