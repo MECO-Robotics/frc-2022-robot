@@ -22,7 +22,7 @@ import frc.robot.commands.auto.AutoShootCollectRightShoot;
 import frc.robot.commands.auto.DriveBackwardsAuto;
 import frc.robot.commands.auto.HalfBall;
 import frc.robot.commands.auto.RamShoot;
-import frc.robot.commands.auto.Roboticon;
+//import frc.robot.commands.auto.Roboticon;
 import frc.robot.commands.auto.SpinShoot;
 import frc.robot.commands.auto.SpinShootBombSquad;
 import frc.robot.commands.auto.TwoBallAuto;
@@ -121,7 +121,7 @@ public class RobotContainer {
     autoCommands.put("2 Ball v1", new TwoBallAuto_OneAtATime(driveSubsystem, cargoSubsystem));
     autoCommands.put("2 Ball v2", new TwoBallAuto_TwiceSameTime(driveSubsystem, cargoSubsystem));
     autoCommands.put("2 ball v3", new TwoBallAuto_TwiceSameTimeV3(driveSubsystem, cargoSubsystem));
-    autoCommands.put("roboticon", new Roboticon(driveSubsystem, cargoSubsystem));
+    //autoCommands.put("roboticon", new Roboticon(driveSubsystem, cargoSubsystem));
     //
     //
     // ------------------------------------------------------------------------

@@ -402,11 +402,50 @@ public class DriveSubsystem extends SubsystemBase {
     return rangeMiddle.getRange();
   }
 
+  enum LevelingState {
+    level_ground,
+    climbing,
+    level_energized,
+    descending
+  }
+
   public void energizePeriodic() {
-    double pitchRadians = Math.toRadians( getPitch() );
-    arcadeDrive(2*Math.sin(pitchRadians), 0);
+    //is this the first time this is called?
+      //Yes - record 'level' pitch
+      //No - compare current pitch to level
+        //did it go up, down, stay the same?
+          //Up - set state to climbing - keep moving forward
+          //Same
+            //has it changed and went back to level? (is it in climbing state?)
+              //No - no action
+              //yes - stop moving
+          //Down - start moving backwards
+        
+   // LevelingState == level_ground
+
+    
+
+
+
+      
+    }
+    
   
+    
+
+
+
+
+
+
+
+
+
+   //Accelerometer roborioAccelerometer =  new BuiltInAccelerometer();
+   
+
+
 
   }
 
-}
+
