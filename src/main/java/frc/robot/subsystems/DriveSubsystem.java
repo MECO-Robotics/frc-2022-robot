@@ -36,6 +36,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
 
 import frc.robot.Constants;
+import frc.robot.commands.drive.DriveStraight;
 
 /**
  * A tank drive train driven by dual motors for each side.
@@ -330,7 +331,8 @@ public class DriveSubsystem extends SubsystemBase {
   public double getRoll() {
     return imu.getPitch();
   }
-// RIO IS MOUNTED SIDEWAYS. WE ARE NOT CRAZY.
+
+  // RIO IS MOUNTED SIDEWAYS. WE ARE NOT CRAZY.
   public double getPitch() {
     return imu.getRoll();
   }
@@ -409,6 +411,22 @@ public class DriveSubsystem extends SubsystemBase {
     descending
   }
 
+/*
+  if (levelingstate = level_ground) {
+    // drive straight 
+  }
+  
+  if (levelingstate = climbing) {
+    // drive straight
+  }
+  if (lelignstate = levle_energized) {
+    // stop
+  }
+  if (levkiegnstate = descending) {
+    // drive backwards
+  }
+*/
+
   public void energizePeriodic() {
     //is this the first time this is called?
       //Yes - record 'level' pitch
@@ -420,32 +438,52 @@ public class DriveSubsystem extends SubsystemBase {
               //No - no action
               //yes - stop moving
           //Down - start moving backwards
-        
-   // LevelingState == level_ground
 
+    /*   
+    if ( [first time being called] ) {
+      LevelingState == level_ground
+
+    } 
+
+    else {
+      
+      // stayed same
+      if (getPitch = 0) {
+        if (levelingstate = climbing) {
+          LevelingState == level_energized
+        }
+      }
+
+      // went up
+      if (getPitch > 0) {
+        LevelingState == climbing
+      }
+
+      // went down
+      if (getPitch < 0) {
+        LevelingState == descending
+      }
+
+
+    }
+    */
+
+
+
+  /*
+      if(getPitch() < 8.5 ) {
+      LevelingState == level_ground
     
-
+      }
+      else {
+  */
 
 
       
-    }
-    
-  
-    
+      }
 
+  // Accelerometer roborioAccelerometer = new BuiltInAccelerometer();
 
-
-
-
-
-
-
-
-   //Accelerometer roborioAccelerometer =  new BuiltInAccelerometer();
-   
-
-
-
-  }
+}
 
 
